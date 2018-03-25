@@ -18,15 +18,14 @@
             <groupId>org.xiaoheshan</groupId>
             <artifactId>hallo-boxing-server-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.xiaoheshan</groupId>
+            <artifactId>hallo-boxing-server-service</artifactId>
+        </dependency>
         <!-- 集成WEB框架 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <!-- swagger依赖 -->
         <dependency>
