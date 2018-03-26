@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.CabinetDOMapperExt">
+  <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.model.CabinetDO">
+    <id column="cabinet_id" jdbcType="INTEGER" property="id" />
+    <result column="area_id_path" jdbcType="VARCHAR" property="areaIdPath" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="cabinet_name" jdbcType="VARCHAR" property="name" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="good_id" jdbcType="INTEGER" property="goodId" />
+    <result column="is_use" jdbcType="TINYINT" property="isUse" />
+    <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cabinet_id, area_id_path, area_id, cabinet_name, ip_address, good_id, is_use, data_flag, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cabinet
+    where cabinet_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cabinet
+    where cabinet_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.model.CabinetDO">
+    insert into cabinet (cabinet_id, area_id_path, area_id, 
+      cabinet_name, ip_address, good_id, 
+      is_use, data_flag, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{areaIdPath,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, #{goodId,jdbcType=INTEGER}, 
+      #{isUse,jdbcType=TINYINT}, #{dataFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.model.CabinetDO">
+    insert into cabinet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        cabinet_id,
+      </if>
+      <if test="areaIdPath != null">
+        area_id_path,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="name != null">
+        cabinet_name,
+      </if>
+      <if test="ipAddress != null">
+        ip_address,
+      </if>
+      <if test="goodId != null">
+        good_id,
+      </if>
+      <if test="isUse != null">
+        is_use,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="areaIdPath != null">
+        #{areaIdPath,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null">
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="isUse != null">
+        #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.model.CabinetDO">
+    update cabinet
+    <set>
+      <if test="areaIdPath != null">
+        area_id_path = #{areaIdPath,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        cabinet_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null">
+        good_id = #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="isUse != null">
+        is_use = #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="dataFlag != null">
+        data_flag = #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cabinet_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.model.CabinetDO">
+    update cabinet
+    set area_id_path = #{areaIdPath,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      cabinet_name = #{name,jdbcType=VARCHAR},
+      ip_address = #{ipAddress,jdbcType=VARCHAR},
+      good_id = #{goodId,jdbcType=INTEGER},
+      is_use = #{isUse,jdbcType=TINYINT},
+      data_flag = #{dataFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where cabinet_id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectPrefix">
+    <if test="page != null">
+      from cabinet where id in ( select id from ( select id 
+    </if>
+  </sql>
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin}, #{page.length} ) as temp_page_table) ]]>
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </sql>
+</mapper>

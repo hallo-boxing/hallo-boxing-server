@@ -7,7 +7,7 @@ CREATE TABLE `user` (
   `user_sex` tinyint(4) DEFAULT '0',
   `user_name` varchar(20) DEFAULT NULL,
   `true_name` varchar(100) DEFAULT NULL,
-  `brithday` date DEFAULT NULL,
+  `birth_day` date DEFAULT NULL,
   `user_photo` varchar(150) DEFAULT '',
   `user_qq` varchar(20) DEFAULT NULL,
   `user_phone` char(11) DEFAULT '',

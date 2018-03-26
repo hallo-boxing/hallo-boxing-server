@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.good.GoodDOMapperExt">
+  <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
+    <id column="good_id" jdbcType="INTEGER" property="id" />
+    <result column="good_name" jdbcType="VARCHAR" property="name" />
+    <result column="good_img" jdbcType="VARCHAR" property="img" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="rent_price" jdbcType="DECIMAL" property="rentPrice" />
+    <result column="good_cat_id_path" jdbcType="VARCHAR" property="catIdPath" />
+    <result column="good_cat_id" jdbcType="INTEGER" property="catId" />
+    <result column="good_cat_id1" jdbcType="INTEGER" property="catId1" />
+    <result column="good_cat_id2" jdbcType="INTEGER" property="catId2" />
+    <result column="good_desc" jdbcType="VARCHAR" property="desc" />
+    <result column="good_status" jdbcType="TINYINT" property="status" />
+    <result column="rent_num" jdbcType="INTEGER" property="rentNum" />
+    <result column="rent_time" jdbcType="TIMESTAMP" property="rentTime" />
+    <result column="gallery" jdbcType="VARCHAR" property="gallery" />
+    <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    good_id, good_name, good_img, market_price, rent_price, good_cat_id_path, good_cat_id, 
+    good_cat_id1, good_cat_id2, good_desc, good_status, rent_num, rent_time, gallery, 
+    data_flag, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from good
+    where good_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from good
+    where good_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
+    insert into good (good_id, good_name, good_img, 
+      market_price, rent_price, good_cat_id_path, 
+      good_cat_id, good_cat_id1, good_cat_id2, 
+      good_desc, good_status, rent_num, 
+      rent_time, gallery, data_flag, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
+      #{marketPrice,jdbcType=DECIMAL}, #{rentPrice,jdbcType=DECIMAL}, #{catIdPath,jdbcType=VARCHAR}, 
+      #{catId,jdbcType=INTEGER}, #{catId1,jdbcType=INTEGER}, #{catId2,jdbcType=INTEGER}, 
+      #{desc,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{rentNum,jdbcType=INTEGER}, 
+      #{rentTime,jdbcType=TIMESTAMP}, #{gallery,jdbcType=VARCHAR}, #{dataFlag,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
+    insert into good
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        good_id,
+      </if>
+      <if test="name != null">
+        good_name,
+      </if>
+      <if test="img != null">
+        good_img,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="rentPrice != null">
+        rent_price,
+      </if>
+      <if test="catIdPath != null">
+        good_cat_id_path,
+      </if>
+      <if test="catId != null">
+        good_cat_id,
+      </if>
+      <if test="catId1 != null">
+        good_cat_id1,
+      </if>
+      <if test="catId2 != null">
+        good_cat_id2,
+      </if>
+      <if test="desc != null">
+        good_desc,
+      </if>
+      <if test="status != null">
+        good_status,
+      </if>
+      <if test="rentNum != null">
+        rent_num,
+      </if>
+      <if test="rentTime != null">
+        rent_time,
+      </if>
+      <if test="gallery != null">
+        gallery,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="rentPrice != null">
+        #{rentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="catIdPath != null">
+        #{catIdPath,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null">
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="catId1 != null">
+        #{catId1,jdbcType=INTEGER},
+      </if>
+      <if test="catId2 != null">
+        #{catId2,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="rentNum != null">
+        #{rentNum,jdbcType=INTEGER},
+      </if>
+      <if test="rentTime != null">
+        #{rentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gallery != null">
+        #{gallery,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
+    update good
+    <set>
+      <if test="name != null">
+        good_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        good_img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="rentPrice != null">
+        rent_price = #{rentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="catIdPath != null">
+        good_cat_id_path = #{catIdPath,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null">
+        good_cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="catId1 != null">
+        good_cat_id1 = #{catId1,jdbcType=INTEGER},
+      </if>
+      <if test="catId2 != null">
+        good_cat_id2 = #{catId2,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null">
+        good_desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        good_status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="rentNum != null">
+        rent_num = #{rentNum,jdbcType=INTEGER},
+      </if>
+      <if test="rentTime != null">
+        rent_time = #{rentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gallery != null">
+        gallery = #{gallery,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFlag != null">
+        data_flag = #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where good_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
+    update good
+    set good_name = #{name,jdbcType=VARCHAR},
+      good_img = #{img,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      rent_price = #{rentPrice,jdbcType=DECIMAL},
+      good_cat_id_path = #{catIdPath,jdbcType=VARCHAR},
+      good_cat_id = #{catId,jdbcType=INTEGER},
+      good_cat_id1 = #{catId1,jdbcType=INTEGER},
+      good_cat_id2 = #{catId2,jdbcType=INTEGER},
+      good_desc = #{desc,jdbcType=VARCHAR},
+      good_status = #{status,jdbcType=TINYINT},
+      rent_num = #{rentNum,jdbcType=INTEGER},
+      rent_time = #{rentTime,jdbcType=TIMESTAMP},
+      gallery = #{gallery,jdbcType=VARCHAR},
+      data_flag = #{dataFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where good_id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectPrefix">
+    <if test="page != null">
+      from good where id in ( select id from ( select id 
+    </if>
+  </sql>
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin}, #{page.length} ) as temp_page_table) ]]>
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </sql>
+</mapper>

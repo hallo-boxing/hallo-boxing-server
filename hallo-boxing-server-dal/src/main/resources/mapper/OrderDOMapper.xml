@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.order.OrderDOMapperExt">
+  <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.order.model.OrderDO">
+    <id column="order_id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="order_status" jdbcType="TINYINT" property="status" />
+    <result column="is_pay" jdbcType="TINYINT" property="isPay" />
+    <result column="order_remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="is_closed" jdbcType="TINYINT" property="isClosed" />
+    <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+    <result column="receive_cabinet_id" jdbcType="INTEGER" property="receiveCabinetId" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="delivery_cabinet_id" jdbcType="INTEGER" property="deliveryCabinetId" />
+    <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, user_id, order_status, is_pay, order_remarks, is_closed, receive_time, 
+    receive_cabinet_id, delivery_time, delivery_cabinet_id, data_flag, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where order_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.order.model.OrderDO">
+    insert into order (order_id, user_id, order_status, 
+      is_pay, order_remarks, is_closed, 
+      receive_time, receive_cabinet_id, delivery_time, 
+      delivery_cabinet_id, data_flag, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{isPay,jdbcType=TINYINT}, #{remarks,jdbcType=VARCHAR}, #{isClosed,jdbcType=TINYINT}, 
+      #{receiveTime,jdbcType=TIMESTAMP}, #{receiveCabinetId,jdbcType=INTEGER}, #{deliveryTime,jdbcType=TIMESTAMP}, 
+      #{deliveryCabinetId,jdbcType=INTEGER}, #{dataFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.order.model.OrderDO">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="status != null">
+        order_status,
+      </if>
+      <if test="isPay != null">
+        is_pay,
+      </if>
+      <if test="remarks != null">
+        order_remarks,
+      </if>
+      <if test="isClosed != null">
+        is_closed,
+      </if>
+      <if test="receiveTime != null">
+        receive_time,
+      </if>
+      <if test="receiveCabinetId != null">
+        receive_cabinet_id,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="deliveryCabinetId != null">
+        delivery_cabinet_id,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isPay != null">
+        #{isPay,jdbcType=TINYINT},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isClosed != null">
+        #{isClosed,jdbcType=TINYINT},
+      </if>
+      <if test="receiveTime != null">
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveCabinetId != null">
+        #{receiveCabinetId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryCabinetId != null">
+        #{deliveryCabinetId,jdbcType=INTEGER},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.order.model.OrderDO">
+    update order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        order_status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isPay != null">
+        is_pay = #{isPay,jdbcType=TINYINT},
+      </if>
+      <if test="remarks != null">
+        order_remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isClosed != null">
+        is_closed = #{isClosed,jdbcType=TINYINT},
+      </if>
+      <if test="receiveTime != null">
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveCabinetId != null">
+        receive_cabinet_id = #{receiveCabinetId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryCabinetId != null">
+        delivery_cabinet_id = #{deliveryCabinetId,jdbcType=INTEGER},
+      </if>
+      <if test="dataFlag != null">
+        data_flag = #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.order.model.OrderDO">
+    update order
+    set user_id = #{userId,jdbcType=INTEGER},
+      order_status = #{status,jdbcType=TINYINT},
+      is_pay = #{isPay,jdbcType=TINYINT},
+      order_remarks = #{remarks,jdbcType=VARCHAR},
+      is_closed = #{isClosed,jdbcType=TINYINT},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      receive_cabinet_id = #{receiveCabinetId,jdbcType=INTEGER},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      delivery_cabinet_id = #{deliveryCabinetId,jdbcType=INTEGER},
+      data_flag = #{dataFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where order_id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectPrefix">
+    <if test="page != null">
+      from order where id in ( select id from ( select id 
+    </if>
+  </sql>
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin}, #{page.length} ) as temp_page_table) ]]>
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </sql>
+</mapper>

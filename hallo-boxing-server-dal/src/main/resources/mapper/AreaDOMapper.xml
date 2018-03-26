@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.area.AreaDOMapperExt">
+  <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.area.model.AreaDO">
+    <id column="area_id" jdbcType="INTEGER" property="id" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="area_name" jdbcType="VARCHAR" property="name" />
+    <result column="is_show" jdbcType="TINYINT" property="isShow" />
+    <result column="area_sort" jdbcType="INTEGER" property="sort" />
+    <result column="area_key" jdbcType="CHAR" property="key" />
+    <result column="area_type" jdbcType="TINYINT" property="type" />
+    <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
+    <result column="create_fime" jdbcType="TIMESTAMP" property="createFime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    area_id, parent_id, area_name, is_show, area_sort, area_key, area_type, data_flag, 
+    create_fime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from area
+    where area_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.area.model.AreaDO">
+    insert into area (area_id, parent_id, area_name, 
+      is_show, area_sort, area_key, area_type, 
+      data_flag, create_fime)
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{isShow,jdbcType=TINYINT}, #{sort,jdbcType=INTEGER}, #{key,jdbcType=CHAR}, #{type,jdbcType=TINYINT}, 
+      #{dataFlag,jdbcType=TINYINT}, #{createFime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.area.model.AreaDO">
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        area_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="name != null">
+        area_name,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="sort != null">
+        area_sort,
+      </if>
+      <if test="key != null">
+        area_key,
+      </if>
+      <if test="type != null">
+        area_type,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+      <if test="createFime != null">
+        create_fime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="key != null">
+        #{key,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createFime != null">
+        #{createFime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.area.model.AreaDO">
+    update area
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        area_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null">
+        area_sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="key != null">
+        area_key = #{key,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        area_type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="dataFlag != null">
+        data_flag = #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createFime != null">
+        create_fime = #{createFime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where area_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.area.model.AreaDO">
+    update area
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      area_name = #{name,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=TINYINT},
+      area_sort = #{sort,jdbcType=INTEGER},
+      area_key = #{key,jdbcType=CHAR},
+      area_type = #{type,jdbcType=TINYINT},
+      data_flag = #{dataFlag,jdbcType=TINYINT},
+      create_fime = #{createFime,jdbcType=TIMESTAMP}
+    where area_id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectPrefix">
+    <if test="page != null">
+      from area where id in ( select id from ( select id 
+    </if>
+  </sql>
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin}, #{page.length} ) as temp_page_table) ]]>
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </sql>
+</mapper>

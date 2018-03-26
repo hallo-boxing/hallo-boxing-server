@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.image.ImageDOMapperExt">
+  <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.image.model.ImageDO">
+    <id column="img_id" jdbcType="INTEGER" property="imgId" />
+    <result column="from_type" jdbcType="TINYINT" property="fromType" />
+    <result column="data_id" jdbcType="INTEGER" property="dataId" />
+    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+    <result column="img_size" jdbcType="INTEGER" property="imgSize" />
+    <result column="is_use" jdbcType="TINYINT" property="isUse" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="from_table" jdbcType="VARCHAR" property="fromTable" />
+    <result column="own_id" jdbcType="INTEGER" property="ownId" />
+    <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    img_id, from_type, data_id, img_path, img_size, is_use, create_time, from_table, 
+    own_id, data_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from image
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from image
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.image.model.ImageDO">
+    insert into image (img_id, from_type, data_id, 
+      img_path, img_size, is_use, 
+      create_time, from_table, own_id, 
+      data_flag)
+    values (#{imgId,jdbcType=INTEGER}, #{fromType,jdbcType=TINYINT}, #{dataId,jdbcType=INTEGER}, 
+      #{imgPath,jdbcType=VARCHAR}, #{imgSize,jdbcType=INTEGER}, #{isUse,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{fromTable,jdbcType=VARCHAR}, #{ownId,jdbcType=INTEGER}, 
+      #{dataFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.image.model.ImageDO">
+    insert into image
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        img_id,
+      </if>
+      <if test="fromType != null">
+        from_type,
+      </if>
+      <if test="dataId != null">
+        data_id,
+      </if>
+      <if test="imgPath != null">
+        img_path,
+      </if>
+      <if test="imgSize != null">
+        img_size,
+      </if>
+      <if test="isUse != null">
+        is_use,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="fromTable != null">
+        from_table,
+      </if>
+      <if test="ownId != null">
+        own_id,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="fromType != null">
+        #{fromType,jdbcType=TINYINT},
+      </if>
+      <if test="dataId != null">
+        #{dataId,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgSize != null">
+        #{imgSize,jdbcType=INTEGER},
+      </if>
+      <if test="isUse != null">
+        #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromTable != null">
+        #{fromTable,jdbcType=VARCHAR},
+      </if>
+      <if test="ownId != null">
+        #{ownId,jdbcType=INTEGER},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.image.model.ImageDO">
+    update image
+    <set>
+      <if test="fromType != null">
+        from_type = #{fromType,jdbcType=TINYINT},
+      </if>
+      <if test="dataId != null">
+        data_id = #{dataId,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null">
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgSize != null">
+        img_size = #{imgSize,jdbcType=INTEGER},
+      </if>
+      <if test="isUse != null">
+        is_use = #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromTable != null">
+        from_table = #{fromTable,jdbcType=VARCHAR},
+      </if>
+      <if test="ownId != null">
+        own_id = #{ownId,jdbcType=INTEGER},
+      </if>
+      <if test="dataFlag != null">
+        data_flag = #{dataFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.image.model.ImageDO">
+    update image
+    set from_type = #{fromType,jdbcType=TINYINT},
+      data_id = #{dataId,jdbcType=INTEGER},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      img_size = #{imgSize,jdbcType=INTEGER},
+      is_use = #{isUse,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      from_table = #{fromTable,jdbcType=VARCHAR},
+      own_id = #{ownId,jdbcType=INTEGER},
+      data_flag = #{dataFlag,jdbcType=TINYINT}
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectPrefix">
+    <if test="page != null">
+      from image where id in ( select id from ( select id 
+    </if>
+  </sql>
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin}, #{page.length} ) as temp_page_table) ]]>
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </sql>
+</mapper>

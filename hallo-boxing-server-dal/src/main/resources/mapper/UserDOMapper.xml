@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.user.UserDOMapperExt">
+  <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.user.model.UserDO">
+    <id column="user_id" jdbcType="INTEGER" property="id" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="user_sex" jdbcType="TINYINT" property="sex" />
+    <result column="user_name" jdbcType="VARCHAR" property="name" />
+    <result column="true_name" jdbcType="VARCHAR" property="trueName" />
+    <result column="brithday" jdbcType="DATE" property="brithday" />
+    <result column="user_photo" jdbcType="VARCHAR" property="photo" />
+    <result column="user_qq" jdbcType="VARCHAR" property="qq" />
+    <result column="user_phone" jdbcType="CHAR" property="phone" />
+    <result column="user_email" jdbcType="VARCHAR" property="email" />
+    <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="pay_pwd" jdbcType="VARCHAR" property="payPwd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, login_name, login_pwd, user_sex, user_name, true_name, brithday, user_photo, 
+    user_qq, user_phone, user_email, last_ip, last_time, data_flag, create_time, pay_pwd
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.user.model.UserDO">
+    insert into user (user_id, login_name, login_pwd, 
+      user_sex, user_name, true_name, 
+      birth_day, user_photo, user_qq, user_phone, 
+      user_email, last_ip, last_time, 
+      data_flag, create_time, pay_pwd
+      )
+    values (#{id,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{loginPwd,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, 
+      #{brithday,jdbcType=DATE}, #{photo,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+      #{email,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR}, #{lastTime,jdbcType=TIMESTAMP}, 
+      #{dataFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{payPwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.user.model.UserDO">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        user_id,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="loginPwd != null">
+        login_pwd,
+      </if>
+      <if test="sex != null">
+        user_sex,
+      </if>
+      <if test="name != null">
+        user_name,
+      </if>
+      <if test="trueName != null">
+        true_name,
+      </if>
+      <if test="brithday != null">
+        brithday,
+      </if>
+      <if test="photo != null">
+        user_photo,
+      </if>
+      <if test="qq != null">
+        user_qq,
+      </if>
+      <if test="phone != null">
+        user_phone,
+      </if>
+      <if test="email != null">
+        user_email,
+      </if>
+      <if test="lastIp != null">
+        last_ip,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="payPwd != null">
+        pay_pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null">
+        #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null">
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="brithday != null">
+        #{brithday,jdbcType=DATE},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null">
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payPwd != null">
+        #{payPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.user.model.UserDO">
+    update user
+    <set>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null">
+        login_pwd = #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        user_sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        user_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null">
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="brithday != null">
+        brithday = #{brithday,jdbcType=DATE},
+      </if>
+      <if test="photo != null">
+        user_photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        user_qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        user_phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        user_email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null">
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataFlag != null">
+        data_flag = #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payPwd != null">
+        pay_pwd = #{payPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.user.model.UserDO">
+    update user
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      login_pwd = #{loginPwd,jdbcType=VARCHAR},
+      user_sex = #{sex,jdbcType=TINYINT},
+      user_name = #{name,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      birth_day = #{brithday,jdbcType=DATE},
+      user_photo = #{photo,jdbcType=VARCHAR},
+      user_qq = #{qq,jdbcType=VARCHAR},
+      user_phone = #{phone,jdbcType=CHAR},
+      user_email = #{email,jdbcType=VARCHAR},
+      last_ip = #{lastIp,jdbcType=VARCHAR},
+      last_time = #{lastTime,jdbcType=TIMESTAMP},
+      data_flag = #{dataFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pay_pwd = #{payPwd,jdbcType=VARCHAR}
+    where user_id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectPrefix">
+    <if test="page != null">
+      from user where id in ( select id from ( select id 
+    </if>
+  </sql>
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin}, #{page.length} ) as temp_page_table) ]]>
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </sql>
+</mapper>

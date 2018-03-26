@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.good.appraisal.GoodAppraisalDOMapperExt">
+  <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.good.appraisal.model.GoodAppraisalDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cabinet_id" jdbcType="INTEGER" property="cabinetId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="good_id" jdbcType="INTEGER" property="goodId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="good_score" jdbcType="INTEGER" property="goodScore" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="images" jdbcType="VARCHAR" property="images" />
+    <result column="is_show" jdbcType="TINYINT" property="isShow" />
+    <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cabinet_id, order_id, good_id, user_id, good_score, content, images, is_show, 
+    data_flag, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from good_appraisal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from good_appraisal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.appraisal.model.GoodAppraisalDO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into good_appraisal (cabinet_id, order_id, good_id, 
+      user_id, good_score, content, 
+      images, is_show, data_flag, 
+      create_time)
+    values (#{cabinetId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{goodId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{goodScore,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{images,jdbcType=VARCHAR}, #{isShow,jdbcType=TINYINT}, #{dataFlag,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.appraisal.model.GoodAppraisalDO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into good_appraisal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cabinetId != null">
+        cabinet_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodId != null">
+        good_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodScore != null">
+        good_score,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="images != null">
+        images,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cabinetId != null">
+        #{cabinetId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodId != null">
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodScore != null">
+        #{goodScore,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.appraisal.model.GoodAppraisalDO">
+    update good_appraisal
+    <set>
+      <if test="cabinetId != null">
+        cabinet_id = #{cabinetId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodId != null">
+        good_id = #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodScore != null">
+        good_score = #{goodScore,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="dataFlag != null">
+        data_flag = #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.appraisal.model.GoodAppraisalDO">
+    update good_appraisal
+    set cabinet_id = #{cabinetId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      good_id = #{goodId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      good_score = #{goodScore,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=TINYINT},
+      data_flag = #{dataFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectPrefix">
+    <if test="page != null">
+      from good_appraisal where id in ( select id from ( select id 
+    </if>
+  </sql>
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin}, #{page.length} ) as temp_page_table) ]]>
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </sql>
+</mapper>

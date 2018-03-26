@@ -18,7 +18,7 @@
 
         <!-- 数据源配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://172.17.0.2:3306/test"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/hallo_boxing"
                         userId="root" password="123456">
             <!-- mysql获取表信息 -->
             <property name="useInformationSchema" value="true"/>
@@ -31,7 +31,7 @@
         </javaTypeResolver>
 
         <!-- model生成配置 -->
-        <javaModelGenerator targetPackage="org.xiaoheshan.piggy.bank.dal.dao.user.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
@@ -41,19 +41,19 @@
         </sqlMapGenerator>
 
         <!-- Mapper接口生成配置 -->
-        <javaClientGenerator targetPackage="org.xiaoheshan.piggy.bank.dal.dao.user" type="XMLMAPPER"
+        <javaClientGenerator targetPackage="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat" type="XMLMAPPER"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- table映射配置 -->
-        <table tableName="test_user" domainObjectName="TestUserDO"
+        <table tableName="good_cat" domainObjectName="GoodCatDO"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql" type="post" identity="true"/>
             <!-- 替换列名的表前缀 -->
-            <columnRenamingRule searchString="user_" replaceString=""/>
+            <columnRenamingRule searchString="good_cat_" replaceString=""/>
         </table>
 
     </context>

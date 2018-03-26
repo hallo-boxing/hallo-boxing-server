@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat.GoodCatDOMapperExt">
+  <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat.model.GoodCatDO">
+    <id column="cat_id" jdbcType="INTEGER" property="catId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="cat_name" jdbcType="VARCHAR" property="catName" />
+    <result column="is_show" jdbcType="TINYINT" property="isShow" />
+    <result column="is_floor" jdbcType="TINYINT" property="isFloor" />
+    <result column="cat_sort" jdbcType="INTEGER" property="catSort" />
+    <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="commission_rate" jdbcType="DECIMAL" property="commissionRate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cat_id, parent_id, cat_name, is_show, is_floor, cat_sort, data_flag, create_time, 
+    commission_rate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from good_cat
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from good_cat
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat.model.GoodCatDO">
+    insert into good_cat (cat_id, parent_id, cat_name, 
+      is_show, is_floor, cat_sort, 
+      data_flag, create_time, commission_rate
+      )
+    values (#{catId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{catName,jdbcType=VARCHAR}, 
+      #{isShow,jdbcType=TINYINT}, #{isFloor,jdbcType=TINYINT}, #{catSort,jdbcType=INTEGER}, 
+      #{dataFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{commissionRate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat.model.GoodCatDO">
+    insert into good_cat
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="catId != null">
+        cat_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="catName != null">
+        cat_name,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="isFloor != null">
+        is_floor,
+      </if>
+      <if test="catSort != null">
+        cat_sort,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="commissionRate != null">
+        commission_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="catId != null">
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null">
+        #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="isFloor != null">
+        #{isFloor,jdbcType=TINYINT},
+      </if>
+      <if test="catSort != null">
+        #{catSort,jdbcType=INTEGER},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commissionRate != null">
+        #{commissionRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat.model.GoodCatDO">
+    update good_cat
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null">
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="isFloor != null">
+        is_floor = #{isFloor,jdbcType=TINYINT},
+      </if>
+      <if test="catSort != null">
+        cat_sort = #{catSort,jdbcType=INTEGER},
+      </if>
+      <if test="dataFlag != null">
+        data_flag = #{dataFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commissionRate != null">
+        commission_rate = #{commissionRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat.model.GoodCatDO">
+    update good_cat
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      cat_name = #{catName,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=TINYINT},
+      is_floor = #{isFloor,jdbcType=TINYINT},
+      cat_sort = #{catSort,jdbcType=INTEGER},
+      data_flag = #{dataFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      commission_rate = #{commissionRate,jdbcType=DECIMAL}
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectPrefix">
+    <if test="page != null">
+      from good_cat where id in ( select id from ( select id 
+    </if>
+  </sql>
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin}, #{page.length} ) as temp_page_table) ]]>
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </sql>
+</mapper>
