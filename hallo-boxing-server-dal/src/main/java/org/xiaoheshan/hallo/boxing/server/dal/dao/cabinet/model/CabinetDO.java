@@ -6,7 +6,7 @@ import java.util.Date;
  * cabinetDO
  * 
  * @author Administrator
- * @since 03-26-2018
+ * @since 03-27-2018
  */
 @lombok.Data
 public class CabinetDO {
@@ -24,12 +24,6 @@ public class CabinetDO {
 
     /** 终端IP地址 */
     private String ipAddress;
-
-    /** 正在存放的商品ID */
-    private Integer goodId;
-
-    /** 是否在用：0.否 1.是 */
-    private Byte isUse;
 
     /** 删除标志 */
     private Byte dataFlag;

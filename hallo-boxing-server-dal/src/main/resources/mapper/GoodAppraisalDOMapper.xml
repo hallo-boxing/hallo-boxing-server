@@ -22,11 +22,11 @@
     select 
     <include refid="Base_Column_List" />
     from good_appraisal
-    where id = #{id,jdbcType=INTEGER}
+    where appraisal_id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from good_appraisal
-    where id = #{id,jdbcType=INTEGER}
+    where appraisal_id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.appraisal.model.GoodAppraisalDO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -159,7 +159,7 @@
       is_show = #{isShow,jdbcType=TINYINT},
       data_flag = #{dataFlag,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where appraisal_id = #{id,jdbcType=INTEGER}
   </update>
   <sql id="MysqlDialectPrefix">
     <if test="page != null">

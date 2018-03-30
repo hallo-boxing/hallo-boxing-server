@@ -6,12 +6,15 @@ import java.util.Date;
  * orderDO
  * 
  * @author Administrator
- * @since 03-26-2018
+ * @since 03-29-2018
  */
 @lombok.Data
 public class OrderDO {
     /** 订单ID */
     private Integer id;
+
+    /**  */
+    private Integer goodId;
 
     /** 用户ID */
     private Integer userId;

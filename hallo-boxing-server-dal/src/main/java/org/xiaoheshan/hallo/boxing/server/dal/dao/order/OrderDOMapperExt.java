@@ -1,6 +1,9 @@
 package org.xiaoheshan.hallo.boxing.server.dal.dao.order;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.xiaoheshan.hallo.boxing.server.dal.dao.order.model.OrderDO;
+
+import java.util.List;
 
 /**
  * orderMapper
@@ -10,4 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface OrderDOMapperExt extends OrderDOMapper {
+
+    List<OrderDO> selectOrderByUserId(Integer userId);
 }

@@ -1,8 +1,7 @@
 SET FOREIGN_KEY_CHECKS=0;
-
 DROP TABLE IF EXISTS `good_appraisal`;
 CREATE TABLE `good_appraisal` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `appraisal_id` int(11) NOT NULL AUTO_INCREMENT,
   `cabinet_id` int(11) NOT NULL DEFAULT '0',
   `order_id` int(11) NOT NULL DEFAULT '0',
   `good_id` int(11) NOT NULL DEFAULT '0',

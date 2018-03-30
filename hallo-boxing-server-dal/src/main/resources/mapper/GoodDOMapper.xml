@@ -48,7 +48,11 @@
       #{rentTime,jdbcType=TIMESTAMP}, #{gallery,jdbcType=VARCHAR}, #{dataFlag,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO"
+          useGeneratedKeys="true">
+    <selectKey resultType="int" keyProperty="id" order="BEFORE">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
     insert into good
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

@@ -7,14 +7,11 @@
     <result column="area_id" jdbcType="INTEGER" property="areaId" />
     <result column="cabinet_name" jdbcType="VARCHAR" property="name" />
     <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
-    <result column="good_id" jdbcType="INTEGER" property="goodId" />
-    <result column="is_use" jdbcType="TINYINT" property="isUse" />
     <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    cabinet_id, area_id_path, area_id, cabinet_name, ip_address, good_id, is_use, data_flag, 
-    create_time
+    cabinet_id, area_id_path, area_id, cabinet_name, ip_address, data_flag, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -28,13 +25,11 @@
   </delete>
   <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.model.CabinetDO">
     insert into cabinet (cabinet_id, area_id_path, area_id, 
-      cabinet_name, ip_address, good_id, 
-      is_use, data_flag, create_time
-      )
+      cabinet_name, ip_address, data_flag, 
+      create_time)
     values (#{id,jdbcType=INTEGER}, #{areaIdPath,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, #{goodId,jdbcType=INTEGER}, 
-      #{isUse,jdbcType=TINYINT}, #{dataFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
-      )
+      #{name,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, #{dataFlag,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.model.CabinetDO">
     insert into cabinet
@@ -53,12 +48,6 @@
       </if>
       <if test="ipAddress != null">
         ip_address,
-      </if>
-      <if test="goodId != null">
-        good_id,
-      </if>
-      <if test="isUse != null">
-        is_use,
       </if>
       <if test="dataFlag != null">
         data_flag,
@@ -83,12 +72,6 @@
       <if test="ipAddress != null">
         #{ipAddress,jdbcType=VARCHAR},
       </if>
-      <if test="goodId != null">
-        #{goodId,jdbcType=INTEGER},
-      </if>
-      <if test="isUse != null">
-        #{isUse,jdbcType=TINYINT},
-      </if>
       <if test="dataFlag != null">
         #{dataFlag,jdbcType=TINYINT},
       </if>
@@ -112,12 +95,6 @@
       <if test="ipAddress != null">
         ip_address = #{ipAddress,jdbcType=VARCHAR},
       </if>
-      <if test="goodId != null">
-        good_id = #{goodId,jdbcType=INTEGER},
-      </if>
-      <if test="isUse != null">
-        is_use = #{isUse,jdbcType=TINYINT},
-      </if>
       <if test="dataFlag != null">
         data_flag = #{dataFlag,jdbcType=TINYINT},
       </if>
@@ -133,8 +110,6 @@
       area_id = #{areaId,jdbcType=INTEGER},
       cabinet_name = #{name,jdbcType=VARCHAR},
       ip_address = #{ipAddress,jdbcType=VARCHAR},
-      good_id = #{goodId,jdbcType=INTEGER},
-      is_use = #{isUse,jdbcType=TINYINT},
       data_flag = #{dataFlag,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where cabinet_id = #{id,jdbcType=INTEGER}

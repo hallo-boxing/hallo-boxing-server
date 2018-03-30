@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
  * cabinetMapper
  * 
  * @author Administrator
- * @since 03-26-2018
+ * @since 03-27-2018
  */
 @Mapper
 public interface CabinetDOMapperExt extends CabinetDOMapper {

@@ -1,4 +1,4 @@
-package org.xiaoheshan.hallo.boxing.server.service;
+package org.xiaoheshan.hallo.boxing.server.service.connetor;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.Unpooled;
@@ -14,6 +14,10 @@ import org.springframework.stereotype.Component;
 import org.xiaoheshan.hallo.boxing.server.common.util.ThreadSleepUtil;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * @author : _Chf
@@ -26,10 +30,14 @@ public class PiConnector implements Runnable {
 
     private Integer port;
 
-    private Channel channel;
+    private Map<String, Channel> clientMap;
+
+    private BlockingQueue<String> messageQueue;
 
     public PiConnector(@Value("${pi-connect.port:8266}") Integer port) {
         this.port = port;
+        this.clientMap = new HashMap<String, Channel>();
+        this.messageQueue = new LinkedBlockingDeque<String>();
     }
 
     @PostConstruct
@@ -65,20 +73,24 @@ public class PiConnector implements Runnable {
         }
     }
 
-    public boolean send(String message) {
+    public String send(String ip, String message) {
         LOGGER.info("向树莓派发送消息：{}", message);
+        Channel channel = clientMap.get(ip);
         if (channel != null) {
             for (int i = 0; i < 2; i++) {
                 if (channel.isWritable()) {
                     channel.writeAndFlush(Unpooled.copiedBuffer(message, CharsetUtil.UTF_8));
                     LOGGER.info("向树莓派发送消息成功");
-                    return true;
+                    try {
+                        return messageQueue.take();
+                    } catch (InterruptedException ignored) {
+                    }
                 }
                 ThreadSleepUtil.sleep(1000);
             }
         }
         LOGGER.warn("向树莓派发送消息失败");
-        return false;
+        return "";
     }
 
     private class ServerHandler extends SimpleChannelInboundHandler<String> {
@@ -86,23 +98,23 @@ public class PiConnector implements Runnable {
         @Override
         protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
             LOGGER.info("接收到树莓派的消息：{}", msg);
-            //TODO 放入消息队列
+            messageQueue.offer(msg);
         }
 
         @Override
         public void channelActive(ChannelHandlerContext ctx) throws Exception {
             super.channelActive(ctx);
-            channel = ctx.channel();
-            LOGGER.info("树莓派连接成功，IP：{}", ctx.channel().remoteAddress());
+            Channel channel = ctx.channel();
+            LOGGER.info("树莓派连接成功，IP：{}", channel.remoteAddress());
+            clientMap.put(channel.remoteAddress().toString(), channel);
         }
 
         @Override
         public void channelInactive(ChannelHandlerContext ctx) throws Exception {
             super.channelInactive(ctx);
-            LOGGER.info("树莓派断开连接");
-            if (channel == ctx.channel()) {
-                channel = null;
-            }
+            Channel channel = ctx.channel();
+            LOGGER.info("树莓派断开连接，IP：{}", channel.remoteAddress());
+            clientMap.remove(channel.remoteAddress().toString());
         }
     }
 

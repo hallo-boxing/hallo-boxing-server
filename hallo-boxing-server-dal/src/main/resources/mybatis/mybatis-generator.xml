@@ -31,7 +31,7 @@
         </javaTypeResolver>
 
         <!-- model生成配置 -->
-        <javaModelGenerator targetPackage="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="org.xiaoheshan.hallo.boxing.server.dal.dao.order.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
@@ -41,19 +41,19 @@
         </sqlMapGenerator>
 
         <!-- Mapper接口生成配置 -->
-        <javaClientGenerator targetPackage="org.xiaoheshan.hallo.boxing.server.dal.dao.good.cat" type="XMLMAPPER"
+        <javaClientGenerator targetPackage="org.xiaoheshan.hallo.boxing.server.dal.dao.order" type="XMLMAPPER"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- table映射配置 -->
-        <table tableName="good_cat" domainObjectName="GoodCatDO"
+        <table tableName="order" domainObjectName="OrderDO"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql" type="post" identity="true"/>
             <!-- 替换列名的表前缀 -->
-            <columnRenamingRule searchString="good_cat_" replaceString=""/>
+            <columnRenamingRule searchString="order_" replaceString=""/>
         </table>
 
     </context>
