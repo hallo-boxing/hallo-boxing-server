@@ -13,11 +13,6 @@
     <artifactId>hallo-boxing-server-web</artifactId>
 
     <dependencies>
-        <!-- 内部项目依赖 -->
-        <dependency>
-            <groupId>org.xiaoheshan</groupId>
-            <artifactId>hallo-boxing-server-common</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.xiaoheshan</groupId>
             <artifactId>hallo-boxing-server-service</artifactId>

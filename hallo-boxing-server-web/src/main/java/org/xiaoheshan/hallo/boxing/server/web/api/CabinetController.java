@@ -130,13 +130,4 @@ public class CabinetController {
         return RestResult.<Void>builder().success().build();
     }
 
-
-
-    @PostMapping("/{cabinet_id}/entry/{nfc_code}")
-    @ApiOperation("归还物品")
-    public RestPageResult<Void> retur(@PathVariable("cabinet_id") Integer cabinetId,
-                                      @PathVariable("nfc_code") Integer nfcCode) {
-        return null;
-    }
-
 }

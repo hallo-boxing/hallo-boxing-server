@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.xiaoheshan.hallo.boxing.server.common.util.ThreadSleepUtil;
+//import org.xiaoheshan.hallo.boxing.server.common.util.ThreadSleepUtil;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -86,7 +86,7 @@ public class PiConnector implements Runnable {
                     } catch (InterruptedException ignored) {
                     }
                 }
-                ThreadSleepUtil.sleep(1000);
+//                ThreadSleepUtil.sleep(1000);
             }
         }
         LOGGER.warn("向树莓派发送消息失败");

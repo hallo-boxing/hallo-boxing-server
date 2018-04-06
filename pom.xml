@@ -22,6 +22,7 @@
         <mybatis.spring.boot.starter.version>1.3.1</mybatis.spring.boot.starter.version>
         <druid.version>1.1.6</druid.version>
         <netty.version>4.1.20.Final</netty.version>
+        <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
     </properties>
 
     <!-- 全局依赖 -->
@@ -68,6 +69,25 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>org.xiaoheshan.hallo.boxing.server.HalloBoxingApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <modules>
         <module>hallo-boxing-server-web</module>

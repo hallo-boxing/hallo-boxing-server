@@ -15,10 +15,6 @@
     <dependencies>
         <dependency>
             <groupId>org.xiaoheshan</groupId>
-            <artifactId>hallo-boxing-server-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.xiaoheshan</groupId>
             <artifactId>hallo-boxing-server-dal</artifactId>
         </dependency>
         <!-- netty依赖 -->
