@@ -15,6 +15,8 @@ import org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO;
 import org.xiaoheshan.hallo.boxing.server.dal.dao.good.nfc.GoodNfcDOMapperExt;
 import org.xiaoheshan.hallo.boxing.server.web.constant.WebConstant;
 
+import java.util.List;
+
 /**
  * @author : _Chf
  * @since : 03-27-2018
@@ -31,9 +33,19 @@ public class GoodController {
     @Autowired
     private GoodNfcDOMapperExt goodNfcDOMapperExt;
 
+    @PostMapping("/get-by-user/{user_id}")
+    @ApiOperation("获取商品信息")
+    public RestResult<List<GoodDO>> getUserId(@PathVariable("user_id") Integer userId) {
+        List<GoodDO> goodDOS = goodDOMapperExt.selectGoodByUserId(userId);
+        if (goodDOS != null) {
+            return RestResult.<List<GoodDO>>builder().success(goodDOS).build();
+        }
+        return RestResult.<List<GoodDO>>builder().failed(RestRetCodeEnum.ILLEGAL_ARGUMENT).build();
+    }
+
     @PostMapping("/get-by-cabinet/{cabinet_id}")
     @ApiOperation("获取商品信息")
-    public RestResult<GoodDO> get(@PathVariable("cabinet_id") Integer cabinetId) {
+    public RestResult<GoodDO> getByCabinetId(@PathVariable("cabinet_id") Integer cabinetId) {
         Integer goodId = cabinetGoodDOMapperExt.selectGoodIdByCabinetId(cabinetId);
         GoodDO goodDO = goodDOMapperExt.selectByPrimaryKey(goodId);
         if (goodDO != null) {
@@ -49,5 +61,14 @@ public class GoodController {
             return RestResult.<Integer>builder().success(goodId).build();
         }
         return RestResult.<Integer>builder().failed(RestRetCodeEnum.ILLEGAL_ARGUMENT).build();
+    }
+
+    @PostMapping("/{id}")
+    public RestResult<GoodDO> getById(@PathVariable("id") Integer id) {
+        GoodDO goodDO = goodDOMapperExt.selectByPrimaryKey(id);
+        if (goodDO != null) {
+            return RestResult.<GoodDO>builder().success(goodDO).build();
+        }
+        return RestResult.<GoodDO>builder().failed(RestRetCodeEnum.ILLEGAL_ARGUMENT).build();
     }
 }

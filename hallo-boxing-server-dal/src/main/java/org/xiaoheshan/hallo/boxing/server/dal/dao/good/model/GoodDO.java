@@ -7,12 +7,15 @@ import java.util.Date;
  * goodDO
  * 
  * @author Administrator
- * @since 03-26-2018
+ * @since 04-07-2018
  */
 @lombok.Data
 public class GoodDO {
     /** 商品ID */
     private Integer id;
+
+    /** 所属用户 */
+    private Integer userId;
 
     /** 商品名称 */
     private String name;
@@ -48,7 +51,7 @@ public class GoodDO {
     private Integer rentNum;
 
     /** 出租时间 */
-    private Date rentTime;
+    private Integer rentTime;
 
     /** 商品相册 */
     private String gallery;

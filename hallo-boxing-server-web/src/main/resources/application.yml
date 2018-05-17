@@ -1,4 +1,9 @@
 spring:
+    http:
+        multipart:
+          max-file-size: 10MB
+          max-request-size: 10MB
+          enabled: true
     datasource:
         druid:
             url: jdbc:mysql://127.0.0.1:3306/hallo_boxing?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull

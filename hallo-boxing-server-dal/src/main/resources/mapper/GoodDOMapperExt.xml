@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.good.GoodDOMapperExt">
   <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+  <select id="selectGoodByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM good
+    WHERE user_id = #{userID}
+  </select>
 </mapper>

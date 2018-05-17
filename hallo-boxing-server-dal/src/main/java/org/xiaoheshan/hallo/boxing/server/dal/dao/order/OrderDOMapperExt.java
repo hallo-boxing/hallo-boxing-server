@@ -14,5 +14,7 @@ import java.util.List;
 @Mapper
 public interface OrderDOMapperExt extends OrderDOMapper {
 
-    List<OrderDO> selectOrderByUserId(Integer userId);
+    List<OrderDO> selectOrderByFromUserId(Integer userId);
+
+    List<OrderDO> selectOrderByToUserId(Integer userId);
 }

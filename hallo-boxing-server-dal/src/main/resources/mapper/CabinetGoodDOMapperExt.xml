@@ -9,7 +9,7 @@
     WHERE cabinet_id = #{cabinetId}
   </select>
 
-  <update id="deleteByCabinetId" parameterType="java.lang.Integer">
+  <update id="updateDataFlagByCabinetIdAndGoodId">
     UPDATE cabinet_good
     SET data_flag = #{dataFlag}
     WHERE cabinet_id = #{cabinetId} AND good_id = #{goodId}

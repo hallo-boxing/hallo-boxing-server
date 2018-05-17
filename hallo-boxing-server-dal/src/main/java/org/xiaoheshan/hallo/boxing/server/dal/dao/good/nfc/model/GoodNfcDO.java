@@ -6,7 +6,7 @@ import java.util.Date;
  * good_nfcDO
  * 
  * @author Administrator
- * @since 03-27-2018
+ * @since 05-12-2018
  */
 @lombok.Data
 public class GoodNfcDO {

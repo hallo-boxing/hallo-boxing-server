@@ -2,10 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.order.OrderDOMapperExt">
   <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
-  <select id="selectOrderByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectOrderByFromUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from order
-    where user_id = #{userId,jdbcType=INTEGER}
+    from `order`
+    where from_user_id = #{userId}
+  </select>
+
+  <select id="selectOrderByToUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `order`
+    where to_user_id = #{userId}
   </select>
 </mapper>

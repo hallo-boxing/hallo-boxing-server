@@ -3,6 +3,7 @@
 <mapper namespace="org.xiaoheshan.hallo.boxing.server.dal.dao.good.GoodDOMapperExt">
   <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
     <id column="good_id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="good_name" jdbcType="VARCHAR" property="name" />
     <result column="good_img" jdbcType="VARCHAR" property="img" />
     <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
@@ -14,15 +15,15 @@
     <result column="good_desc" jdbcType="VARCHAR" property="desc" />
     <result column="good_status" jdbcType="TINYINT" property="status" />
     <result column="rent_num" jdbcType="INTEGER" property="rentNum" />
-    <result column="rent_time" jdbcType="TIMESTAMP" property="rentTime" />
+    <result column="rent_time" jdbcType="INTEGER" property="rentTime" />
     <result column="gallery" jdbcType="VARCHAR" property="gallery" />
     <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    good_id, good_name, good_img, market_price, rent_price, good_cat_id_path, good_cat_id, 
-    good_cat_id1, good_cat_id2, good_desc, good_status, rent_num, rent_time, gallery, 
-    data_flag, create_time
+    good_id, user_id, good_name, good_img, market_price, rent_price, good_cat_id_path, 
+    good_cat_id, good_cat_id1, good_cat_id2, good_desc, good_status, rent_num, rent_time, 
+    gallery, data_flag, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -35,28 +36,33 @@
     where good_id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
-    insert into good (good_id, good_name, good_img, 
-      market_price, rent_price, good_cat_id_path, 
-      good_cat_id, good_cat_id1, good_cat_id2, 
-      good_desc, good_status, rent_num, 
-      rent_time, gallery, data_flag, 
-      create_time)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
-      #{marketPrice,jdbcType=DECIMAL}, #{rentPrice,jdbcType=DECIMAL}, #{catIdPath,jdbcType=VARCHAR}, 
-      #{catId,jdbcType=INTEGER}, #{catId1,jdbcType=INTEGER}, #{catId2,jdbcType=INTEGER}, 
-      #{desc,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{rentNum,jdbcType=INTEGER}, 
-      #{rentTime,jdbcType=TIMESTAMP}, #{gallery,jdbcType=VARCHAR}, #{dataFlag,jdbcType=TINYINT}, 
-      #{createTime,jdbcType=TIMESTAMP})
+    <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into good (good_id, user_id, good_name, 
+      good_img, market_price, rent_price, 
+      good_cat_id_path, good_cat_id, good_cat_id1, 
+      good_cat_id2, good_desc, good_status, 
+      rent_num, rent_time, gallery, 
+      data_flag, create_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{img,jdbcType=VARCHAR}, #{marketPrice,jdbcType=DECIMAL}, #{rentPrice,jdbcType=DECIMAL}, 
+      #{catIdPath,jdbcType=VARCHAR}, #{catId,jdbcType=INTEGER}, #{catId1,jdbcType=INTEGER}, 
+      #{catId2,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{rentNum,jdbcType=INTEGER}, #{rentTime,jdbcType=INTEGER}, #{gallery,jdbcType=VARCHAR}, 
+      #{dataFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO"
-          useGeneratedKeys="true">
-    <selectKey resultType="int" keyProperty="id" order="BEFORE">
-      SELECT LAST_INSERT_ID() AS id
+  <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
+    <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
     </selectKey>
     insert into good
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         good_id,
+      </if>
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="name != null">
         good_name,
@@ -108,6 +114,9 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -142,7 +151,7 @@
         #{rentNum,jdbcType=INTEGER},
       </if>
       <if test="rentTime != null">
-        #{rentTime,jdbcType=TIMESTAMP},
+        #{rentTime,jdbcType=INTEGER},
       </if>
       <if test="gallery != null">
         #{gallery,jdbcType=VARCHAR},
@@ -158,6 +167,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
     update good
     <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         good_name = #{name,jdbcType=VARCHAR},
       </if>
@@ -192,7 +204,7 @@
         rent_num = #{rentNum,jdbcType=INTEGER},
       </if>
       <if test="rentTime != null">
-        rent_time = #{rentTime,jdbcType=TIMESTAMP},
+        rent_time = #{rentTime,jdbcType=INTEGER},
       </if>
       <if test="gallery != null">
         gallery = #{gallery,jdbcType=VARCHAR},
@@ -208,7 +220,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.model.GoodDO">
     update good
-    set good_name = #{name,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=INTEGER},
+      good_name = #{name,jdbcType=VARCHAR},
       good_img = #{img,jdbcType=VARCHAR},
       market_price = #{marketPrice,jdbcType=DECIMAL},
       rent_price = #{rentPrice,jdbcType=DECIMAL},
@@ -219,7 +232,7 @@
       good_desc = #{desc,jdbcType=VARCHAR},
       good_status = #{status,jdbcType=TINYINT},
       rent_num = #{rentNum,jdbcType=INTEGER},
-      rent_time = #{rentTime,jdbcType=TIMESTAMP},
+      rent_time = #{rentTime,jdbcType=INTEGER},
       gallery = #{gallery,jdbcType=VARCHAR},
       data_flag = #{dataFlag,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}

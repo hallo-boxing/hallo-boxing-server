@@ -8,7 +8,7 @@
     <result column="user_sex" jdbcType="TINYINT" property="sex" />
     <result column="user_name" jdbcType="VARCHAR" property="name" />
     <result column="true_name" jdbcType="VARCHAR" property="trueName" />
-    <result column="brithday" jdbcType="DATE" property="brithday" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
     <result column="user_photo" jdbcType="VARCHAR" property="photo" />
     <result column="user_qq" jdbcType="VARCHAR" property="qq" />
     <result column="user_phone" jdbcType="CHAR" property="phone" />
@@ -20,7 +20,7 @@
     <result column="pay_pwd" jdbcType="VARCHAR" property="payPwd" />
   </resultMap>
   <sql id="Base_Column_List">
-    user_id, login_name, login_pwd, user_sex, user_name, true_name, brithday, user_photo, 
+    user_id, login_name, login_pwd, user_sex, user_name, true_name, birthday, user_photo, 
     user_qq, user_phone, user_email, last_ip, last_time, data_flag, create_time, pay_pwd
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,13 +36,13 @@
   <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.user.model.UserDO">
     insert into user (user_id, login_name, login_pwd, 
       user_sex, user_name, true_name, 
-      birth_day, user_photo, user_qq, user_phone, 
+      birthday, user_photo, user_qq, user_phone, 
       user_email, last_ip, last_time, 
       data_flag, create_time, pay_pwd
       )
     values (#{id,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{loginPwd,jdbcType=VARCHAR}, 
       #{sex,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, 
-      #{brithday,jdbcType=DATE}, #{photo,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+      #{birthday,jdbcType=DATE}, #{photo,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
       #{email,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR}, #{lastTime,jdbcType=TIMESTAMP}, 
       #{dataFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{payPwd,jdbcType=VARCHAR}
       )
@@ -68,8 +68,8 @@
       <if test="trueName != null">
         true_name,
       </if>
-      <if test="brithday != null">
-        brithday,
+      <if test="birthday != null">
+        birthday,
       </if>
       <if test="photo != null">
         user_photo,
@@ -118,8 +118,8 @@
       <if test="trueName != null">
         #{trueName,jdbcType=VARCHAR},
       </if>
-      <if test="brithday != null">
-        #{brithday,jdbcType=DATE},
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
       </if>
       <if test="photo != null">
         #{photo,jdbcType=VARCHAR},
@@ -168,8 +168,8 @@
       <if test="trueName != null">
         true_name = #{trueName,jdbcType=VARCHAR},
       </if>
-      <if test="brithday != null">
-        brithday = #{brithday,jdbcType=DATE},
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
       </if>
       <if test="photo != null">
         user_photo = #{photo,jdbcType=VARCHAR},
@@ -208,7 +208,7 @@
       user_sex = #{sex,jdbcType=TINYINT},
       user_name = #{name,jdbcType=VARCHAR},
       true_name = #{trueName,jdbcType=VARCHAR},
-      birth_day = #{brithday,jdbcType=DATE},
+      birthday = #{birthday,jdbcType=DATE},
       user_photo = #{photo,jdbcType=VARCHAR},
       user_qq = #{qq,jdbcType=VARCHAR},
       user_phone = #{phone,jdbcType=CHAR},

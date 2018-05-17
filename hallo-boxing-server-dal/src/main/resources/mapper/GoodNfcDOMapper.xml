@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="org.xiaoheshan.hallo.boxing.server.dal.dao.good.nfc.model.GoodNfcDO">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="good_id" jdbcType="INTEGER" property="goodId" />
-    <result column="nfc_code" jdbcType="CHAR" property="nfcCode" />
+    <result column="nfc_code" jdbcType="VARCHAR" property="nfcCode" />
     <result column="data_flag" jdbcType="TINYINT" property="dataFlag" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
@@ -27,7 +27,7 @@
     </selectKey>
     insert into good_nfc (good_id, nfc_code, data_flag, 
       create_time)
-    values (#{goodId,jdbcType=INTEGER}, #{nfcCode,jdbcType=CHAR}, #{dataFlag,jdbcType=TINYINT}, 
+    values (#{goodId,jdbcType=INTEGER}, #{nfcCode,jdbcType=VARCHAR}, #{dataFlag,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.nfc.model.GoodNfcDO">
@@ -54,7 +54,7 @@
         #{goodId,jdbcType=INTEGER},
       </if>
       <if test="nfcCode != null">
-        #{nfcCode,jdbcType=CHAR},
+        #{nfcCode,jdbcType=VARCHAR},
       </if>
       <if test="dataFlag != null">
         #{dataFlag,jdbcType=TINYINT},
@@ -71,7 +71,7 @@
         good_id = #{goodId,jdbcType=INTEGER},
       </if>
       <if test="nfcCode != null">
-        nfc_code = #{nfcCode,jdbcType=CHAR},
+        nfc_code = #{nfcCode,jdbcType=VARCHAR},
       </if>
       <if test="dataFlag != null">
         data_flag = #{dataFlag,jdbcType=TINYINT},
@@ -85,7 +85,7 @@
   <update id="updateByPrimaryKey" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.good.nfc.model.GoodNfcDO">
     update good_nfc
     set good_id = #{goodId,jdbcType=INTEGER},
-      nfc_code = #{nfcCode,jdbcType=CHAR},
+      nfc_code = #{nfcCode,jdbcType=VARCHAR},
       data_flag = #{dataFlag,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

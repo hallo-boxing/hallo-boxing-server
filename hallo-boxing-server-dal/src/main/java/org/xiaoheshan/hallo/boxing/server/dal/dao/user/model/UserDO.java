@@ -6,7 +6,7 @@ import java.util.Date;
  * userDO
  * 
  * @author Administrator
- * @since 03-26-2018
+ * @since 04-14-2018
  */
 @lombok.Data
 public class UserDO {
@@ -29,7 +29,7 @@ public class UserDO {
     private String trueName;
 
     /**  */
-    private Date brithday;
+    private Date birthday;
 
     /**  */
     private String photo;

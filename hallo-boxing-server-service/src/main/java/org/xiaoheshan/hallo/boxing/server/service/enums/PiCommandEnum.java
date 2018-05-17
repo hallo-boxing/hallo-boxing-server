@@ -12,7 +12,7 @@ public enum PiCommandEnum {
 
     CHECKOUT(COMMAND_PREFIX + "CHECKOUT"),
     DOOR(COMMAND_PREFIX + "DOOR"),
-    CAMARA(COMMAND_PREFIX + "CAMARA"),
+    CAMERA(COMMAND_PREFIX + "CAMERA"),
     ;
 
     private String name;

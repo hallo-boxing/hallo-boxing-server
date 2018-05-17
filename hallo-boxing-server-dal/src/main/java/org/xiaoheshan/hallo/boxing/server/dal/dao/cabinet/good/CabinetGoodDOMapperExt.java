@@ -1,6 +1,7 @@
 package org.xiaoheshan.hallo.boxing.server.dal.dao.cabinet.good;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * cabinet_goodMapper
@@ -13,7 +14,7 @@ public interface CabinetGoodDOMapperExt extends CabinetGoodDOMapper {
 
     Integer selectGoodIdByCabinetId(Integer cabinetId);
 
-    int updateDataFlagByCabinetIdAndGoodId(Integer dataFlag,
-                                               Integer cabinetId,
-                                               Integer goodId);
+    int updateDataFlagByCabinetIdAndGoodId(@Param("dataFlag") Integer dataFlag,
+                                           @Param("cabinetId") Integer cabinetId,
+                                           @Param("goodId") Integer goodId);
 }

@@ -28,6 +28,9 @@
     where img_id = #{imgId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.image.model.ImageDO">
+    <selectKey keyProperty="imgId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into image (img_id, from_type, data_id, 
       img_path, img_size, is_use, 
       create_time, from_table, own_id, 
@@ -38,6 +41,9 @@
       #{dataFlag,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="org.xiaoheshan.hallo.boxing.server.dal.dao.image.model.ImageDO">
+    <selectKey keyProperty="imgId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into image
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="imgId != null">
